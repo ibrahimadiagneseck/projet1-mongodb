@@ -7,7 +7,7 @@ const StudentSchema = new Schema({
         type : String,  
         required : [true, 'Name is required'],
         validate: {
-            validator: (name) => name.length >2 ,
+            validator: (name) => name.length > 2 ,
             message: 'Name is too short'
         }
     },

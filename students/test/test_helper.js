@@ -1,28 +1,29 @@
 const mongoose = require("mongoose");
+const { deleteOne } = require("../src/student");
 
-// const { deleteOne } = require("../src/student");
+mongoose.connect("mongodb://127.0.0.1:27017", {useNewUrlParser: true, useUnifiedTopology: true,});
 
-mongoose.connect("mongodb://127.0.0.1:27017", {useNewUrlParser: true, useUnifiedTopology: true});
-
-// gestion d'evenement pour savoir si on est connecté
 mongoose.connection
     .once("open", () => console.log("We are connected"))
     .on("error", (error) => {
         console.warn("An error occured", error)
     })
 
-// beforeEach((done) => {
-//     // mongoose.connection.collections.students.drop();
-//     // done()
+// supprimer les enregistrements avant l'execution
+beforeEach((done) => {
 
-//     const { students, comments, articleblogs } = mongoose.connection.collections;
+    // reference directe à la collection students
+    mongoose.connection.collections.students.drop();
+    done()
 
-//     students.drop(() => {
-//         comments.drop(() =>{
-//             articleblogs.drop(() => {
-//                 done()
-//             })
-//         })
-//     })
+    const { students, comments, articleblogs } = mongoose.connection.collections;
 
-// }) 
+    // students.drop(() => {
+    //     comments.drop(() =>{
+    //         articleblogs.drop(() => {
+    //             done()
+    //         })
+    //     })
+    // })
+
+})  
