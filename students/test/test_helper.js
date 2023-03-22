@@ -12,11 +12,12 @@ mongoose.connection
 // supprimer les enregistrements avant l'execution
 beforeEach((done) => {
 
-    // reference directe à la collection students
+    // reference directe à la collection students apres avoir fait l'association
     mongoose.connection.collections.students.drop();
     done()
 
-    const { students, comments, articleblogs } = mongoose.connection.collections;
+    // pas plus d'une collection à la fois
+    // const { students, comments, articleblogs } = mongoose.connection.collections;
 
     // students.drop(() => {
     //     comments.drop(() =>{

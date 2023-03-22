@@ -20,6 +20,7 @@ const StudentSchema = new Schema({
     }]
 })
 
+// acceder à un champs (propriete) virtuel
 StudentSchema.virtual('articleCount').get(function() {
     // console.log('Run the getter function')
     return this.articles.length
