@@ -33,17 +33,17 @@ describe('Association Test', () => {
     it.only('Nested populate', done=> {
         Student.findOne({name: 'Ibrahima'})
         .populate({
-            path: 'articleBlog',
+            path: 'articleBlog', // tous les articleBlog
             populate: {
                 path: 'comments', // tous les commentaires associes articleBlog
                 model: 'comment',
                 populate: {
                     path: 'students', // tous les students associes comments
-                    model: 'student',
+                    model: 'student'
                 }
             }
         })
-        .then( student => {
+        .then(student => {
             assert(student.name === 'Ibrahima')
             assert(student.articleBlog[0].title == 'MongoDb')
             assert(student.articleBlog[0].comments[0].content === 'Well done!')
