@@ -5,7 +5,10 @@ const ArticleSchema = require('./article_schema')
 const StudentSchema = new Schema({
     name : {
         type : String,  
-        required : [true, 'Name is required'],
+        required : [
+            true, 
+            'Name is required'
+        ],
         validate: {
             validator: (name) => name.length > 2 ,
             message: 'Name is too short'
@@ -13,11 +16,15 @@ const StudentSchema = new Schema({
     },
     studentNumber : Number, 
     grade: Number,
-    articles : [ArticleSchema],
-    articleBlog: [{
-        type: Schema.Types.ObjectId,
-        ref: 'articleBlog'
-    }]
+    articles : [
+        ArticleSchema
+    ],
+    articleBlog: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'articleBlog'
+        }
+    ]
 })
 
 // acceder à un champs (propriete) virtuel
